@@ -1,0 +1,16 @@
+================================================
+PROJECT: MAN UP! INC. FATHERHOOD INITIATIVE
+REPOSITORY: MUI-Fatherhood
+OWNER: as12711
+================================================
+
+THIS IS NOT SAFESTEP!
+
+This repository contains the Fatherhood Initiative
+signup system for Man Up! Inc.
+
+SafeStep is in a different repository:
+- SafeStep: https://github.com/as12711/SafeStep.git
+
+GitHub: https://github.com/as12711/MUI-Fatherhood
+

@@ -1,0 +1,13 @@
+{
+  "window.title": "🔵 FATHERHOOD INITIATIVE - MUI-Fatherhood",
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#2196F3",
+    "titleBar.activeForeground": "#FFFFFF",
+    "statusBar.background": "#2196F3",
+    "statusBar.foreground": "#FFFFFF"
+  },
+  "git.confirmSync": true,
+  "git.confirmPush": true,
+  "git.confirmEmptyCommits": true
+}
+
