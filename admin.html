@@ -777,16 +777,8 @@
         const SUPABASE_URL = 'https://zagzyiyhomvwhhsibbxv.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphZ3p5aXlob212d2hoc2liYnh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU1NTAyODQsImV4cCI6MjA4MTEyNjI4NH0.oVaFmhT2t44v45TEq4e_FtAfyqG1-or-0d4VTeOtxNE';
         
-        let supabase = null;
-        
-        function initSupabase() {
-            if (!supabase && window.supabase) {
-                const { createClient } = window.supabase;
-                supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                console.log('Supabase initialized successfully');
-            }
-            return supabase;
-        }
+        // Initialize Supabase client
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
         let allData = [];
         let currentViewItem = null;
@@ -1135,9 +1127,7 @@
         });
         
         // Load data on page load
-        // Load data on page load
         window.addEventListener('load', function() {
-            initSupabase();
             loadData();
         });
     </script>
