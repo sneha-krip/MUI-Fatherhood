@@ -529,7 +529,8 @@
         const SUPABASE_URL = 'https://zagzyiyhomvwhhsibbxv.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphZ3p5aXlob212d2hoc2liYnh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU1NTAyODQsImV4cCI6MjA4MTEyNjI4NH0.oVaFmhT2t44v45TEq4e_FtAfyqG1-or-0d4VTeOtxNE';
         
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Use a different variable name to avoid conflict with global 'supabase' from CDN
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
         // Debug mode - press Ctrl+Shift+D to toggle
         let debugMode = false;
@@ -697,7 +698,7 @@
             debugLog(`Submitting: ${JSON.stringify(formData, null, 2)}`);
             
             try {
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('fatherhood_signups')
                     .insert([formData])
                     .select();
@@ -745,7 +746,7 @@
         // ============================================
         (async function testConnection() {
             try {
-                const { data, error } = await supabase.from('fatherhood_signups').select('id').limit(1);
+                const { data, error } = await supabaseClient.from('fatherhood_signups').select('id').limit(1);
                 if (error) {
                     debugLog(`DB Check Failed: ${error.message}`);
                 } else {
