@@ -777,8 +777,17 @@
         const SUPABASE_URL = 'https://zagzyiyhomvwhhsibbxv.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphZ3p5aXlob212d2hoc2liYnh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU1NTAyODQsImV4cCI6MjA4MTEyNjI4NH0.oVaFmhT2t44v45TEq4e_FtAfyqG1-or-0d4VTeOtxNE';
         
-        // Initialize Supabase client
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Use a different variable name to avoid conflict with global 'supabase' from CDN
+        let supabaseClient = null;
+        
+        function initSupabase() {
+            if (!supabaseClient && window.supabase) {
+                const { createClient } = window.supabase;
+                supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                console.log('Supabase initialized successfully');
+            }
+            return supabaseClient;
+        }
         
         let allData = [];
         let currentViewItem = null;
@@ -796,7 +805,7 @@
             table.style.display = 'none';
             
             try {
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('fatherhood_signups')
                     .select('*')
                     .order('created_at', { ascending: false });
@@ -1004,9 +1013,9 @@
             try {
                 let result;
                 if (id) {
-                    result = await supabase.from('fatherhood_signups').update(data).eq('id', id);
+                    result = await supabaseClient.from('fatherhood_signups').update(data).eq('id', id);
                 } else {
-                    result = await supabase.from('fatherhood_signups').insert([data]);
+                    result = await supabaseClient.from('fatherhood_signups').insert([data]);
                 }
                 
                 if (result.error) throw result.error;
@@ -1030,7 +1039,7 @@
             if (!confirm(`Are you sure you want to delete ${currentViewItem.full_name}?`)) return;
             
             try {
-                const { error } = await supabase
+                const { error } = await supabaseClient
                     .from('fatherhood_signups')
                     .delete()
                     .eq('id', currentViewItem.id);
@@ -1127,7 +1136,9 @@
         });
         
         // Load data on page load
+        // Load data on page load
         window.addEventListener('load', function() {
+            initSupabase();
             loadData();
         });
     </script>
