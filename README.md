@@ -8,10 +8,19 @@ A complete participant registration and management system for the Fatherhood Ini
 |------|-----|---------|
 | **Signup Form** | `signup.html` | Public registration form for fathers |
 | **Admin Dashboard** | `admin.html` | Staff portal to manage participants |
+| **🔍 Diagnostic Tool** | `diagnostic.html` | **NEW!** Test database connection and diagnose issues |
+| **Connection Test** | `test-connection.html` | Advanced connection testing |
 
 ---
 
 ## 🚀 Quick Start
+
+### Step 0: Having Issues? Run the Diagnostic Tool First! 🔍
+
+If you're having trouble with the signup form or admin dashboard:
+1. Open `diagnostic.html` in your browser
+2. It will automatically test your database connection
+3. Follow the specific instructions it provides
 
 ### Step 1: Set Up Supabase Database
 
@@ -123,6 +132,12 @@ Fonts:
 
 ## 🛠️ Troubleshooting
 
+### 🔍 Use the Diagnostic Tool First!
+**Open `diagnostic.html` in your browser** - it will automatically test your setup and tell you exactly what to fix.
+
+### "Identifier 'supabase' has already been declared" error
+✅ **FIXED** in the latest code! Make sure you're using the updated files from this repository.
+
 ### "Database table not found" error
 Run the SQL in `supabase-schema.sql` in your Supabase SQL Editor.
 
@@ -133,7 +148,8 @@ Open browser console (F12) and check for errors. Enable debug mode with `Ctrl+Sh
 The email already exists in the database. Use the admin dashboard to find/edit the existing entry.
 
 ### Data not showing in admin dashboard
-1. Check if the table exists in Supabase
+1. **First, open `diagnostic.html`** to run automatic tests
+2. Check if the table exists in Supabase
 2. Verify RLS policies are set correctly
 3. Try refreshing the page
 
@@ -143,10 +159,13 @@ The email already exists in the database. Use the admin dashboard to find/edit t
 
 ```
 MUI-Fatherhood/
-├── signup.html          # Public signup form
-├── admin.html           # Admin dashboard
-├── supabase-schema.sql  # Database setup script
-├── README.md            # This file
+├── signup.html             # Public signup form (FIXED)
+├── admin.html              # Admin dashboard
+├── diagnostic.html         # NEW! Diagnostic tool to test database
+├── test-connection.html    # Connection testing tool (FIXED)
+├── supabase-schema.sql     # Database setup script (USE THIS!)
+├── SETUP_INSTRUCTIONS.md   # Detailed setup guide
+├── README.md               # This file
 ├── index.html           # (legacy - use signup.html)
 ├── fatherhood-admin.html # (legacy - use admin.html)
 └── backend/             # Optional Node.js backend (not required)
