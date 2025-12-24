@@ -212,7 +212,8 @@
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphZ3p5aXlob212d2hoc2liYnh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU1NTAyODQsImV4cCI6MjA4MTEyNjI4NH0.oVaFmhT2t44v45TEq4e_FtAfyqG1-or-0d4VTeOtxNE';
         const TABLE_NAME = 'fatherhood_signups';
         
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        // Use a different variable name to avoid conflict with global 'supabase' from CDN
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
         // Display config
         document.getElementById('configUrl').textContent = SUPABASE_URL;
@@ -237,7 +238,7 @@
             try {
                 log('connLog', 'Testing Supabase connection...');
                 
-                const { data, error } = await supabase.from(TABLE_NAME).select('id').limit(1);
+                const { data, error } = await supabaseClient.from(TABLE_NAME).select('id').limit(1);
                 
                 if (error) {
                     log('connLog', `Error: ${error.message} (Code: ${error.code})`, true);
@@ -262,7 +263,7 @@
             try {
                 log('tableLog', 'Checking table structure...');
                 
-                const { data, error } = await supabase.from(TABLE_NAME).select('*').limit(0);
+                const { data, error } = await supabaseClient.from(TABLE_NAME).select('*').limit(0);
                 
                 if (error) {
                     log('tableLog', `Error: ${error.message}`, true);
@@ -305,7 +306,7 @@
             log('dataLog', `Inserting test record: ${testData.email}`);
             
             try {
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from(TABLE_NAME)
                     .insert([testData])
                     .select();
@@ -326,7 +327,7 @@
             log('dataLog', 'Fetching records...');
             
             try {
-                const { data, error, count } = await supabase
+                const { data, error, count } = await supabaseClient
                     .from(TABLE_NAME)
                     .select('*', { count: 'exact' })
                     .order('created_at', { ascending: false })
@@ -357,7 +358,7 @@
             log('dataLog', 'Deleting test records...');
             
             try {
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from(TABLE_NAME)
                     .delete()
                     .like('full_name', 'TEST USER%');
