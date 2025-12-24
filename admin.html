@@ -1135,7 +1135,11 @@
         });
         
         // Load data on page load
-        loadData();
+        // Load data on page load
+        window.addEventListener('load', function() {
+            initSupabase();
+            loadData();
+        });
     </script>
 </body>
 </html>
