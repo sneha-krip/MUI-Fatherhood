@@ -8,7 +8,7 @@ A complete participant registration and management system for the Fatherhood Ini
 |------|-----|---------|
 | **Signup Form** | `signup.html` | Public registration form for fathers |
 | **Admin Dashboard** | `admin.html` | Staff portal to manage participants |
-| **🔍 Diagnostic Tool** | `diagnostic.html` | **NEW!** Test database connection and diagnose issues |
+| **🔍 Diagnostic Tool** | `diagnostic.html` | Test database connection and diagnose issues |
 | **Connection Test** | `test-connection.html` | Advanced connection testing |
 
 ---
@@ -159,15 +159,13 @@ The email already exists in the database. Use the admin dashboard to find/edit t
 
 ```
 MUI-Fatherhood/
-├── signup.html             # Public signup form (FIXED)
+├── signup.html             # Public signup form
 ├── admin.html              # Admin dashboard
 ├── diagnostic.html         # NEW! Diagnostic tool to test database
-├── test-connection.html    # Connection testing tool (FIXED)
-├── supabase-schema.sql     # Database setup script (USE THIS!)
+├── test-connection.html    # Connection testing tool
+├── supabase-schema.sql     # Database setup script
 ├── SETUP_INSTRUCTIONS.md   # Detailed setup guide
 ├── README.md               # This file
-├── index.html           # (legacy - use signup.html)
-├── fatherhood-admin.html # (legacy - use admin.html)
 └── backend/             # Optional Node.js backend (not required)
 ```
 
